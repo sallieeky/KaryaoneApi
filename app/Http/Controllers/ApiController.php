@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cekin;
 use App\Models\Cekout;
+use App\Models\Cuti;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -126,6 +127,53 @@ class ApiController extends Controller
                 "status" => "gagal",
                 "keterangan" => "Kamu tidak bisa melakukan Check Out saat ini",
                 "data" => null
+            ];
+        }
+        return response()->json($data);
+    }
+
+    public function cuti(Request $request)
+    {
+        // cek apakah sudah cuti
+        $cek = Cuti::where([['user_id', "=", $request->user_id], ["tanggal", "=", $request->tanggal]])->first();
+        if ($cek) {
+            $data = [
+                "status" => "gagal",
+                "keterangan" => "Kamu telah melakukan Cuti pada tanggal tersebut",
+                "data" => null
+            ];
+        } else {
+            Cuti::create([
+                "user_id" => $request->user_id,
+                "keterangan" => $request->keterangan,
+                "tanggal" => $request->tanggal,
+                "jenis" => $request->jenis
+            ]);
+            Cekin::create([
+                "user_id" => $request->user_id,
+                "keterangan" => "Cuti",
+                "jam" => "00:00",
+                "tanggal" => $request->tanggal,
+                "latitude" => null,
+                "longitude" => null
+            ]);
+            Cekout::create([
+                "user_id" => $request->user_id,
+                "keterangan" => "Cuti",
+                "jam" => "00:00",
+                "tanggal" => $request->tanggal,
+                "latitude" => null,
+                "longitude" => null,
+                "aktivitas" => "Cuti"
+            ]);
+            $data = [
+                "status" => "berhasil",
+                "keterangan" => "Berhasil memasukkan data cuti",
+                "data" => [
+                    "user_id" => $request->user_id,
+                    "keterangan" => "Cuti",
+                    "tanggal" => $request->tanggal,
+                ]
             ];
         }
         return response()->json($data);

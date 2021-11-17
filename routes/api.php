@@ -25,3 +25,4 @@ Route::get('/get-cekin-cekout/{user}', [ApiController::class, 'getCekinCekout'])
 Route::post('/login', [ApiController::class, 'login']);
 Route::post('/cekin', [ApiController::class, 'cekin']);
 Route::post('/cekout', [ApiController::class, 'cekout']);
+Route::post('/cuti', [ApiController::class, 'cuti']);

@@ -22,5 +22,13 @@ class UserSeeder extends Seeder
             'password' => bcrypt('admin'),
             'foto' => 'foto.png'
         ]);
+        User::create([
+            'nama' => 'Alvian',
+            'jabatan' => 'Human Resource Development',
+            'nip' => '10101010',
+            'email' => 'alvian@karyaone',
+            'password' => bcrypt('alvian'),
+            'foto' => 'foto.png'
+        ]);
     }
 }
