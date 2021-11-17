@@ -18,9 +18,12 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'nama',
         'email',
         'password',
+        'jabatan',
+        'nip',
+        'foto'
     ];
 
     /**
@@ -41,4 +44,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function cekin()
+    {
+        return $this->hasMany(Cekin::class);
+    }
+    public function cekout()
+    {
+        return $this->hasMany(Cekout::class);
+    }
 }

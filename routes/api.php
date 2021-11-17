@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/", function () {
-    return response()->json([
-        "message" => "Welcome to the API"
-    ]);
-});
+Route::get('/get-user/{user}', [ApiController::class, 'getUser']);
+Route::get('/get-cekin-cekout/{user}', [ApiController::class, 'getCekinCekout']);
+
+Route::post('/login', [ApiController::class, 'login']);
+Route::post('/cekin', [ApiController::class, 'cekin']);
+Route::post('/cekout', [ApiController::class, 'cekout']);
