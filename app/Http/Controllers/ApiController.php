@@ -152,7 +152,7 @@ class ApiController extends Controller
             Cekin::create([
                 "user_id" => $request->user_id,
                 "keterangan" => "Cuti",
-                "jam" => "00:00",
+                "jam" => "--:--",
                 "tanggal" => $request->tanggal,
                 "latitude" => null,
                 "longitude" => null
@@ -160,7 +160,7 @@ class ApiController extends Controller
             Cekout::create([
                 "user_id" => $request->user_id,
                 "keterangan" => "Cuti",
-                "jam" => "00:00",
+                "jam" => "--:--",
                 "tanggal" => $request->tanggal,
                 "latitude" => null,
                 "longitude" => null,
