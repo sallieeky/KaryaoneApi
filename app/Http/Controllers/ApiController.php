@@ -164,7 +164,7 @@ class ApiController extends Controller
                 "tanggal" => $request->tanggal,
                 "latitude" => null,
                 "longitude" => null,
-                "aktivitas" => "Cuti"
+                "aktivitas" => $request->keterangan
             ]);
             $data = [
                 "status" => "berhasil",
