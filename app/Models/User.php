@@ -23,7 +23,9 @@ class User extends Authenticatable
         'password',
         'jabatan',
         'nip',
-        'foto'
+        'foto',
+        'alamat',
+        'no_telp'
     ];
 
     /**

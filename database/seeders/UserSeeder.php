@@ -18,6 +18,8 @@ class UserSeeder extends Seeder
             'nama' => 'Admin',
             'jabatan' => 'Admin',
             'nip' => '123456789',
+            'no_telp' => '081234567890',
+            'alamat' => 'Jl. Batu Ratna No.56',
             'email' => 'admin@karyaone',
             'password' => bcrypt('admin'),
             'foto' => 'foto.png'
@@ -26,6 +28,8 @@ class UserSeeder extends Seeder
             'nama' => 'Alvian',
             'jabatan' => 'Human Resource Development',
             'nip' => '10101010',
+            'no_telp' => '081234567890',
+            'alamat' => 'Jl. Batu Ratna No.56',
             'email' => 'alvian@karyaone',
             'password' => bcrypt('alvian'),
             'foto' => 'foto.png'

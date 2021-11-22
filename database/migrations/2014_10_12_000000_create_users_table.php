@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('nama');
             $table->string('jabatan');
             $table->integer('nip');
+            $table->string('no_telp');
+            $table->string('alamat');
             $table->string('foto');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

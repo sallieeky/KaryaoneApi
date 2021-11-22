@@ -178,4 +178,17 @@ class ApiController extends Controller
         }
         return response()->json($data);
     }
+
+    public function update(Request $request)
+    {
+        User::find($request->user_id)->update([
+            "alamat" => $request->alamat,
+            "no_telp" => $request->no_telp,
+        ]);
+        $data = [
+            "status" => "berhasil",
+            "keterangan" => "Berhasil mengubah data",
+        ];
+        return response()->json($data);
+    }
 }

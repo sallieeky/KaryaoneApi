@@ -26,3 +26,4 @@ Route::post('/login', [ApiController::class, 'login']);
 Route::post('/cekin', [ApiController::class, 'cekin']);
 Route::post('/cekout', [ApiController::class, 'cekout']);
 Route::post('/cuti', [ApiController::class, 'cuti']);
+Route::post('/update', [ApiController::class, 'update']);
