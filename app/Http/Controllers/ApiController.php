@@ -134,6 +134,52 @@ class ApiController extends Controller
 
     public function cuti(Request $request)
     {
+
+        $start_date = Carbon::parse($request->tanggal_mulai);
+        $end_date = Carbon::parse($request->tanggal_selesai)->addDay();
+
+        while (!$start_date->isSameDay($end_date)) {
+            $cekin = Cekin::where([['user_id', "=", $request->user_id], ["tanggal", "=", $start_date]])->first();
+            $cekout = Cekout::where([['user_id', "=", $request->user_id], ["tanggal", "=", $start_date]])->first();
+            if ($cekin && $cekout) {
+            } else {
+                Cuti::create([
+                    "user_id" => $request->user_id,
+                    "keterangan" => $request->keterangan,
+                    "tanggal" => $start_date,
+                    "jenis" => $request->jenis
+                ]);
+                Cekin::create([
+                    "user_id" => $request->user_id,
+                    "keterangan" => "Cuti",
+                    "jam" => "--:--",
+                    "tanggal" => $start_date,
+                    "latitude" => null,
+                    "longitude" => null
+                ]);
+                Cekout::create([
+                    "user_id" => $request->user_id,
+                    "keterangan" => "Cuti",
+                    "jam" => "--:--",
+                    "tanggal" => $start_date,
+                    "latitude" => null,
+                    "longitude" => null,
+                    "aktivitas" => $request->keterangan
+                ]);
+            }
+            $start_date->addDay();
+        }
+        $data = [
+            "status" => "berhasil",
+            "keterangan" => "Berhasil mengajukan cuti",
+            "data" => [
+                "user_id" => $request->user_id,
+                "keterangan" => $request->keterangan,
+                "tanggal" => $request->tanggal_mulai
+            ]
+        ];
+        return response()->json($data);
+
         // cek apakah sudah cuti
         $cek = Cuti::where([['user_id', "=", $request->user_id], ["tanggal", "=", $request->tanggal]])->first();
         if ($cek) {
