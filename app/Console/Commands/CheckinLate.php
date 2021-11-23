@@ -45,7 +45,7 @@ class CheckinLate extends Command
             $cek = Cekin::where([['user_id', $us->id], ['tanggal', '=', Carbon::now()->format('Y-m-d')]])->first();
             if (!$cek) {
                 Cekin::create([
-                    "user_id" => $us->user_id,
+                    "user_id" => $us->id,
                     "keterangan" => "Terlambat",
                     "jam" => "--:--",
                     "tanggal" => Carbon::now()->format('Y-m-d'),
